@@ -9,7 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>alibaba-nacos-discovery-server</artifactId>
+    <artifactId>alibaba-nacos-config-properties</artifactId>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
@@ -18,9 +18,30 @@
     </properties>
 
     <dependencies>
+
+<!--        解决No spring.config.import property has been defined-->
+<!--        Description:-->
+<!--        No spring.config.import property has been defined-->
+<!--        Action:-->
+<!--        Add a spring.config.import=nacos: property to your configuration.-->
+<!--        If configuration is not required add spring.config.import=optional:nacos: instead.-->
+<!--        To disable this check, set spring.cloud.nacos.config.import-check.enabled=false.-->
+
+<!--        后续找解决方案发现是因为在springcloud 2020.0.2版本中把bootstrap的相关依赖从spring-cloud-starter-config中移除了，所以现在在2020.02 以后需要单独引入spring-cloud-starter-bootstrap 依赖-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bootstrap</artifactId>
+            <version>3.0.3</version>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
 
         <dependency>
